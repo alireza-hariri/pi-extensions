@@ -120,7 +120,7 @@ export const PROVIDER_BASE_URLS = {
 type KnownProvider = keyof typeof PROVIDER_BASE_URLS;
 
 /** All providers are exposed by the VPN proxy under their provider name. */
-export const LLM_PROXY_URL = "https://llm-proxy.open8.ir";
+export const LLM_PROXY_URL = "https://llm-proxy.op8.ir";
 
 /**
  * Return the provider endpoint appropriate for the current route.

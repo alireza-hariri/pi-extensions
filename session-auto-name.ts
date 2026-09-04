@@ -13,9 +13,8 @@ const NAME_SESSION_SYSTEM_PROMPT = readFileSync(
   "utf8",
 ).trim();
 
-// Intentionally enabled for now so the extension's progress is visible.
 const PROVIDER = "openrouter";
-const MODEL_ID = "google/gemma-3-12b-it";
+const MODEL_ID = "openai/gpt-oss-120b";
 
 
 
@@ -41,9 +40,11 @@ async function nameFromPrompt(
     .replace(/[\r\n]+/g, " ")
     .replace(/^['"`]+|['"`]+$/g, "")
     .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 60)
     .trim();
+  if (name.length > 60) {
+    // Truncate at a word boundary instead of mid-word.
+    name = name.slice(0, 61).replace(/\s+\S*$/, "").trim();
+  }
 
   if (!name) {
     debug(ctx, "the naming model returned an empty name");
